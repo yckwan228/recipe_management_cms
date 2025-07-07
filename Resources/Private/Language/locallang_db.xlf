@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:recipe_management/Resources/Private/Language/locallang_db.xlf" date="2024-12-07T00:59:07Z" product-name="recipe_management">
+		<header/>
+		<body>
+			<trans-unit id="tx_recipemanagement_domain_model_benutzer" resname="tx_recipemanagement_domain_model_benutzer">
+				<source>Benutzer</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_benutzer.benutzer_name" resname="tx_recipemanagement_domain_model_benutzer.benutzer_name">
+				<source>Benutzer Name</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_benutzer.benutzer_password" resname="tx_recipemanagement_domain_model_benutzer.benutzer_password">
+				<source>Benutzer Password</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_benutzer.benutzer_email" resname="tx_recipemanagement_domain_model_benutzer.benutzer_email">
+				<source>Benutzer Email</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_recipe" resname="tx_recipemanagement_domain_model_recipe">
+				<source>Recipe</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_recipe.recipe_name" resname="tx_recipemanagement_domain_model_recipe.recipe_name">
+				<source>Recipe Name</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_recipe.total_calories" resname="tx_recipemanagement_domain_model_recipe.total_calories">
+				<source>Total Calories</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_recipe.benutzer" resname="tx_recipemanagement_domain_model_recipe.benutzer">
+				<source>Benutzer</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_ingredientinrecipe" resname="tx_recipemanagement_domain_model_ingredientinrecipe">
+				<source>Ingredient In Recipe</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_ingredientinrecipe.quantity_in_gram" resname="tx_recipemanagement_domain_model_ingredientinrecipe.quantity_in_gram">
+				<source>Quantity In Gram</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_ingredientinrecipe.recipe" resname="tx_recipemanagement_domain_model_ingredientinrecipe.recipe">
+				<source>Recipe</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_ingredientinrecipe.ingredientallid" resname="tx_recipemanagement_domain_model_ingredientinrecipe.ingredientallid">
+				<source>Ingredientallid</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_ingredientgeneral" resname="tx_recipemanagement_domain_model_ingredientgeneral">
+				<source>Ingredient General</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_ingredientgeneral.ingredient_name" resname="tx_recipemanagement_domain_model_ingredientgeneral.ingredient_name">
+				<source>Ingredient Name</source>
+			</trans-unit>
+			<trans-unit id="tx_recipemanagement_domain_model_ingredientgeneral.calories_per_gram" resname="tx_recipemanagement_domain_model_ingredientgeneral.calories_per_gram">
+				<source>Calories Per Gram</source>
+			</trans-unit>
+			<trans-unit id="tx_recipe_management_recipes.name" resname="tx_recipe_management_recipes.name">
+				<source>recipes</source>
+			</trans-unit>
+			<trans-unit id="tx_recipe_management_recipes.description" resname="tx_recipe_management_recipes.description">
+				<source></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

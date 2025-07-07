@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+</html>
+
+<f:layout name="RecipeLayout" />
+
+
+<f:section name="content">
+
+    <body>
+        <f:render partial="Header" arguments="{recipe:recipe, benutzer:benutzer}" />
+
+        <div class="page-content">
+            <f:form>
+                <div class="portion-input">
+                    <label for="portions">Portionen:</label>
+                    <input type="number" id="portion-input" name="portions" value="{recipe.portions}" min="1" max="20"
+                        onchange="updateNutrients()" data-base-portions="{recipe.basePortions}" />
+                </div>
+            </f:form>
+            <div class="recipe-details-container">
+                <div class="detail-box">
+                    Zutaten:
+                    <ul>
+                        <f:for each="{ingredientsInRecipe}" as="ingredientEntry">
+                            <li>
+                                {ingredientEntry.ingredient.ingredientName} -
+                                <span class="ingredient-quantity" data-base-quantity="{ingredientEntry.quantityInGram}">
+                                    {ingredientEntry.quantityInGram}
+                                </span>g
+                                <ul>
+                                    <li>Kohlenhydrate: <span class="carbs"
+                                            data-base-carbs="{ingredientEntry.calculatedCarbs}">
+                                            {ingredientEntry.calculatedCarbs}
+                                        </span>g</li>
+                                    <li>Protein: <span class="protein"
+                                            data-base-protein="{ingredientEntry.calculatedProtein}">
+                                            {ingredientEntry.calculatedProtein}
+                                        </span>g</li>
+                                    <li>Fett: <span class="fat" data-base-fat="{ingredientEntry.calculatedFat}">
+                                            {ingredientEntry.calculatedFat}
+                                        </span>g</li>
+                                </ul>
+                            </li>
+                        </f:for>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    <strong>Gesamte Nährstoffe pro Rezept:</strong>
+                    <ul>
+                        <li>Kohlenhydrate: <span id="totalCarbs" data-base-total="{totalCarbs}">
+                                {totalCarbs}
+                            </span>g</li>
+                        <li>Protein: <span id="totalProtein" data-base-total="{totalProtein}">
+                                {totalProtein}
+                            </span>g</li>
+                        <li>Fett: <span id="totalFat" data-base-total="{totalFat}">
+                                {totalFat}
+                            </span>g</li>
+                    </ul>
+                </div>
+
+                <div class="detail-box">
+                    Kalorien: <span id="totalCalories" data-base-calories="{recipe.totalCalories}">
+                        {recipe.totalCalories}
+                    </span>
+                </div>
+
+
+                <div class="buttons-container">
+                    <f:link.action action="editRecipe" controller="Recipe" arguments="{recipeUid: recipe.uid}">
+                        Bearbeiten
+                    </f:link.action>
+
+
+                    <f:link.action action="deleteRecipe" controller="Recipe" arguments="{recipeUid: recipe.uid}"
+                        class="button"
+                        additionalAttributes="{onclick: 'return confirm(\'Möchten Sie das Rezept wirklich löschen?\')'}">
+                        Löschen
+                    </f:link.action>
+                </div>
+
+            </div>
+
+            <script>
+                function updateNutrients() {
+                    let portionInput = document.getElementById("portion-input");
+                    let newPortions = parseFloat(portionInput.value);
+                    let basePortions = parseFloat(portionInput.getAttribute("data-base-portions"));
+
+                    // Verhindere Division durch 0 oder Fehlerhafte Werte
+                    if (isNaN(newPortions) || newPortions < 1) newPortions = 1;
+                    if (isNaN(basePortions) || basePortions < 1) basePortions = 1;
+
+                    let scaleFactor = newPortions / basePortions;
+
+                    // Zutaten-Mengen anpassen
+                    document.querySelectorAll(".ingredient-quantity").forEach(el => {
+                        let baseQuantity = parseFloat(el.getAttribute("data-base-quantity")) || 0;
+                        el.textContent = (baseQuantity * scaleFactor).toFixed(1);
+                    });
+
+                    // Kohlenhydrate, Protein und Fett pro Zutat anpassen
+                    document.querySelectorAll(".carbs").forEach(el => {
+                        let baseCarbs = parseFloat(el.getAttribute("data-base-carbs")) || 0;
+                        el.textContent = (baseCarbs * scaleFactor).toFixed(1);
+                    });
+
+                    document.querySelectorAll(".protein").forEach(el => {
+                        let baseProtein = parseFloat(el.getAttribute("data-base-protein")) || 0;
+                        el.textContent = (baseProtein * scaleFactor).toFixed(1);
+                    });
+
+                    document.querySelectorAll(".fat").forEach(el => {
+                        let baseFat = parseFloat(el.getAttribute("data-base-fat")) || 0;
+                        el.textContent = (baseFat * scaleFactor).toFixed(1);
+                    });
+
+                    // Gesamtwerte aktualisieren
+                    document.getElementById("totalCarbs").textContent = (parseFloat(document.getElementById("totalCarbs").getAttribute("data-base-total")) * scaleFactor || 0).toFixed(1);
+                    document.getElementById("totalProtein").textContent = (parseFloat(document.getElementById("totalProtein").getAttribute("data-base-total")) * scaleFactor || 0).toFixed(1);
+                    document.getElementById("totalFat").textContent = (parseFloat(document.getElementById("totalFat").getAttribute("data-base-total")) * scaleFactor || 0).toFixed(1);
+                    document.getElementById("totalCalories").textContent = (parseFloat(document.getElementById("totalCalories").getAttribute("data-base-calories")) * scaleFactor || 0).toFixed(1);
+                }
+            </script>
+
+
+
+    </body>
+
+
+</f:section>
+
+</html>

@@ -1,0 +1,60 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Recipes\RecipeManagement\Controller;
+
+
+/**
+ * This file is part of the "Recipe Management" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * (c) 2024 
+ */
+
+/**
+ * BenutzerController
+ */
+class BenutzerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
+
+    /**
+     * benutzerRepository
+     *
+     * @var \Recipes\RecipeManagement\Domain\Repository\BenutzerRepository
+     */
+    protected $benutzerRepository = null;
+
+    /**
+     * @param \Recipes\RecipeManagement\Domain\Repository\BenutzerRepository $benutzerRepository
+     */
+    public function injectBenutzerRepository(\Recipes\RecipeManagement\Domain\Repository\BenutzerRepository $benutzerRepository)
+    {
+        $this->benutzerRepository = $benutzerRepository;
+    }
+
+    /**
+     * action list
+     *
+     * @return string|object|null|void
+     */
+    public function listAction()
+    {
+        $benutzers = $this->benutzerRepository->findAll();
+        $this->view->assign('benutzers', $benutzers);
+    }
+
+
+    public function showAction(\YincheungKwan\Mitarbeiter\Domain\Model\Mitarbeiter $mitarbeiter)
+    {
+        $this->view->assign('mitarbeiter', $mitarbeiter);
+    }
+
+
+
+}
+
+
+

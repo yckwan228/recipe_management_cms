@@ -1,0 +1,32 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="content">
+    <h1>Willkommen, {benutzer.benutzerName}</h1>
+
+    <h2>Deine Kontoinformationen</h2>
+    <p>Benutzername: {benutzer.benutzerName}</p>
+    <p>E-Mail: {benutzer.benutzerEmail}</p>
+
+    <h3>
+        <f:link.action action="listRecipe" controller="Recipe" arguments="{benutzerId: benutzer.uid}">
+            Meine Rezepte
+        </f:link.action>
+    </h3>
+    <h3>
+        <f:link.action action="newRecipe" controller="Recipe" arguments="{benutzerId: benutzer.uid}">
+            Neues Rezept erstellen
+        </f:link.action>
+    </h3>
+
+    <br>
+    <f:link.action action="edit" controller="Benutzer" arguments="{uid: benutzer.uid}">
+        Konto bearbeiten
+    </f:link.action>
+    <br>
+    <f:form action="logout" controller="Benutzer" method="post">
+    <button>Ausloggen</button>
+</f:form>
+</f:section>
+</html>
+

@@ -1,0 +1,29 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="content">
+    <h1>Edit Benutzer</h1>
+
+    <f:flashMessages />
+
+    <f:form action="update" object="{benutzer}" name="benutzer">
+        <label for="benutzerName">Name</label>
+        <f:form.textfield property="benutzerName" id="benutzerName" />
+        
+        <label for="benutzerEmail">Email</label>
+        <f:form.textfield property="benutzerEmail" id="benutzerEmail" />
+        
+        <label for="benutzerPassword">Password</label>
+        <f:form.password property="benutzerPassword" id="benutzerPassword" />
+        
+        <f:form.submit value="Save" />
+    </f:form>
+
+
+<!-- Konto löschen Button -->
+<f:form action="delete" method="post" arguments="{benutzerUid: benutzer.uid}" onsubmit="return confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten?')">
+    <f:form.submit value="Konto löschen" class="btn btn-danger" />
+</f:form>
+
+</f:section>
+</html>

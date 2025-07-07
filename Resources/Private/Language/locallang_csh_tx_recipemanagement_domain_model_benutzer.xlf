@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:recipe_management/Resources/Private/Language/locallang_csh_tx_recipemanagement_domain_model_benutzer.xlf" date="2024-12-07T00:59:07Z" product-name="recipe_management">
+		<header/>
+		<body>
+			<trans-unit id="benutzer_name.description" resname="benutzer_name.description">
+				<source>benutzerName</source>
+			</trans-unit>
+			<trans-unit id="benutzer_password.description" resname="benutzer_password.description">
+				<source>benutzerPassword</source>
+			</trans-unit>
+			<trans-unit id="benutzer_email.description" resname="benutzer_email.description">
+				<source>benutzerEmail</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

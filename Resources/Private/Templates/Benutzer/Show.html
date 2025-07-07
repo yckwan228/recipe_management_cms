@@ -1,0 +1,30 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="content">
+    <h1>Recipes for {benutzer.benutzerName}</h1>
+    <p>Email: {benutzer.benutzerEmail}</p>
+
+    <h2>Recipe List</h2>
+    <ul>
+        <f:if condition="{recipes -> f:count()}">
+            <f:then>
+                <f:for each="{recipes}" as="recipe">
+                    <li>
+                        <strong>{recipe.recipeName}</strong> - {recipe.totalCalories} calories
+                        <f:link.action action="showRecipe" controller="Recipe" arguments="{recipe: recipe}">Show</f:link.action>
+                        <f:link.action action="editRecipe" controller="Recipe" arguments="{recipe: recipe}">Edit</f:link.action>
+                        <f:link.action action="deleteRecipe" controller="Recipe" arguments="{recipe: recipe}">Delete</f:link.action>
+                    </li>
+                </f:for>
+            </f:then>
+            <f:else>
+                <p>No recipes found for this user.</p>
+            </f:else>
+        </f:if>
+    </ul>
+
+    <f:link.action action="newRecipe" controller="Recipe" arguments="{benutzerId: benutzer.uid}">Add Recipe</f:link.action>
+
+</f:section>
+</html>

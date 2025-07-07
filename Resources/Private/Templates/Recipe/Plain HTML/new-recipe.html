@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Meine Rezepte</title>
+        <link rel="stylesheet" href="styles/recipe-book.css" media="screen">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"> 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">
+            <div class="nav-bar">
+                <a href="recipe-list.html">Meine Rezepte</a>
+                <a href="login.html">Abmelden</a>
+            </div>
+            <div class="title">
+                Neues Rezept
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="new-recipe-form">
+                <div class="title-input">
+                    <label for="recipe-titel">Titel:</label>
+                    <input type="text" id="recipe-titel" name="recipe-titel">
+                </div>
+                <div class="portion-input">
+                    <input type="number" id="portions" name="portions" min="1" max="20" value="2">
+                    <label for="portions">Portionen</label>
+                </div>
+                <div class="subtitle">Zutaten:</div>
+                <a class="add-ingredient" href="ingredient-list.html">
+                    <div class="add-ingredient-icon">
+                        <span class="material-symbols-outlined">add_circle</span>
+                    </div>
+                    <div>Zutat suchen</div>
+                </a>
+                <div class="ingredient-list-item">
+                    <input type="number" class="amount-input" name="amount-input-1" min="1">
+                    <label for="amount-input-1">g Spaghetti</label>
+                </div>
+                <div class="ingredient-list-item">
+                    <input type="number" class="amount-input" name="amount-input-1" min="1">
+                    <label for="amount-input-1">g Spaghetti</label>
+                </div>
+                <div class="ingredient-list-item">
+                    <input type="number" class="amount-input" name="amount-input-1" min="1">
+                    <label for="amount-input-1">g Spaghetti</label>
+                </div>
+            </div>
+            <div class="buttons-container">
+                <a href="recipe-list.html" class="button">Rezept speichern</a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,10 @@
+<div class="header">
+    <div class="nav-bar">
+        <f:link.action action="listRecipe" controller="Recipe" arguments="{benutzer: benutzer}">Meine Rezepte</f:link.action>
+        <!-- <a href="recipe-list.html">Meine Rezepte</a> -->
+        <f:link.action action="logout" controller="Benutzer" additionalAttributes="{onclick: 'return confirm(\'Möchten Sie sich wirklich ausloggen?\')'}">Abmelden</f:link.action>
+    </div>
+    <div class="title">
+        {recipe.recipeName}
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="RecipeLayout" />
+
+<f:section name="content">
+    <body>
+        <f:render partial="Header" arguments="{title: 'Zutaten', recipe: recipe, benutzer: benutzer}" />
+        <div class="page-content">
+            <f:for each="{entries}" as="entry">
+                <f:render partial="IngredientListItemEditRecipe" arguments="{ingredient: entry, recipeUid: recipeUid}" />
+            </f:for>
+            <p>DEBUG: recipeUid = {recipeUid}</p>
+        </div>
+    </body>
+</f:section>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:recipe_management/Resources/Private/Language/locallang_csh_tx_recipemanagement_domain_model_ingredientinrecipe.xlf" date="2024-12-07T00:59:07Z" product-name="recipe_management">
+		<header/>
+		<body>
+			<trans-unit id="quantity_in_gram.description" resname="quantity_in_gram.description">
+				<source>quantityInGram</source>
+			</trans-unit>
+			<trans-unit id="recipe.description" resname="recipe.description">
+				<source>recipe</source>
+			</trans-unit>
+			<trans-unit id="ingredientallid.description" resname="ingredientallid.description">
+				<source>ingredientallid</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

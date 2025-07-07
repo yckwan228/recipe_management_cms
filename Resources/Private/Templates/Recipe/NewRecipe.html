@@ -1,0 +1,152 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="RecipeLayout" />
+<f:section name="content">
+
+    <body>
+        <f:render partial="Header" arguments="{title:'Neues Rezept', benutzer:benutzer}" />
+        <div class="page-content">
+            <f:form class="new-recipe-form" action="createRecipe" method="post" name="newRecipe">
+
+                <!-- Übergibt die Benutzer-ID als verstecktes Feld -->
+                <f:form.hidden name="benutzerId" value="{benutzerId}" />
+                <p>Debug Benutzer ID: {benutzerId}</p>
+
+                <!-- Rezept-UUID übergeben -->
+                <f:form.hidden name="recipeUuid" value="{recipeUuid}" />
+
+                <!-- Rezeptname als verstecktes Feld speichern -->
+                <f:form.hidden name="recipeName" value="{recipeData.title}" />
+
+                <div class="title-input">
+                    <label for="recipeName">Titel:</label>
+                    <f:form.textfield property="recipeName" id="recipe-titel" name="recipeName"
+                        value="{recipeData.title}" required="required" />
+                </div>
+
+                <div class="portion-input">
+                    <!-- f:form needs a property -->
+                    <f:form.textfield type="number" id="portions" name="portions" value="{recipeData.portions}"
+                        additionalAttributes="{min:'1', max:'20'}" />
+                    <label for="portions">Portionen</label>
+                </div>
+
+                <f:form.hidden name="portions" id="hiddenPortions" value="{recipeData.portions}" />
+
+                <!--arguments="{recipe: newRecipe}"-->
+
+                <div class="subtitle">Zutaten:</div>
+                <p>Recipe UUID: {recipeUuid}</p>
+                <f:link.action action="listIngredient" controller="Recipe"
+                    arguments="{recipeUuid: recipeUuid, benutzerId: benutzerId}" class="add-ingredient">
+                    <div class="add-ingredient-icon">
+                        <span class="material-symbols-outlined">add_circle</span>
+                    </div>
+                    <div>Zutat suchen</div>
+                </f:link.action>
+
+
+                <!-- <p>Debug-Link: <f:link.action action="listIngredient" controller="Recipe" arguments="{recipeUuid: recipeUuid}">Hier klicken</f:link.action></p>
+-->
+
+<div class="ingredient-list">
+    <h4>Ausgewählte Zutaten:</h4>
+    <ul>
+        <f:for each="{recipeData.ingredients}" as="ingredient">
+            <li class="ingredient-list-item" data-base-quantity="{ingredient.quantity}"
+                data-calories-per-100g="{ingredient.caloriesPer100g}">
+
+                {ingredient.name} -
+                <span class="ingredient-quantity">{ingredient.quantity}g</span> -
+                <span class="ingredient-calories">
+                    {ingredient.caloriesPer100g * ingredient.quantity / 100} kcal
+                </span> (DEBUG: {ingredient.caloriesPer100g} kcal pro 100g)
+
+                <f:link.action action="removeIngredient"
+                    arguments="{recipeUuid: recipeUuid, ingredientId: ingredient.ingredientId, benutzerId: benutzerId}"
+                    class="button">
+                    Entfernen
+                </f:link.action>
+            </li>
+        </f:for>
+    </ul>
+</div>
+
+
+
+                <!-- total calories need to be calculated after adding ingredients-->
+                <div class="title-input">
+                    <label for="totalCalories">Kalorien:</label>
+                    <f:form.textfield property="totalCalories" id="totalCalories" required="required" />
+                </div>
+
+
+                <f:form.submit value="Rezept erstellen" />
+            </f:form>
+
+            <!-- <div class="buttons-container">
+                <a href="recipe-list.html" class="button">Rezept speichern</a>
+            </div> -->
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const portionInput = document.getElementById("portions");
+                const totalCaloriesField = document.getElementById("totalCalories");
+                const hiddenPortionsInput = document.getElementById("hiddenPortions");
+
+                function updateIngredientAmounts() {
+                    const portionCount = parseInt(portionInput.value, 10);
+                    if (isNaN(portionCount) || portionCount <= 0) return;
+
+                    let totalCalories = 0;
+
+                    document.querySelectorAll(".ingredient-list-item").forEach(item => {
+                        // HTML-Elemente für die Anzeige
+                        const quantitySpan = item.querySelector(".ingredient-quantity");
+                        const caloriesSpan = item.querySelector(".ingredient-calories");
+
+                        // Ursprüngliche Werte aus den Datenattributen lesen
+                        const baseQuantity = parseFloat(item.dataset.baseQuantity) || 0;
+                        const caloriesPer100g = parseFloat(item.getAttribute("data-calories-per-100g")) || 0;
+                        console.log(`DEBUG: Ingredient ${item.textContent} hat ${caloriesPer100g} kcal pro 100g`);
+
+                        // Sicherstellen, dass kcal pro 100g korrekt vorliegt
+                        if (caloriesPer100g <= 0) {
+                            console.warn("⚠️ Fehler: caloriesPer100g ist 0 oder nicht gesetzt für", item);
+                        }
+
+                        // Neue Menge und kcal berechnen
+                        const newQuantity = baseQuantity * portionCount;
+                        const newCalories = (caloriesPer100g * newQuantity) / 100; // 🔥 Richtig skaliert
+
+                        // Werte in der UI aktualisieren
+                        quantitySpan.textContent = `${newQuantity.toFixed(0)}g`;
+                        caloriesSpan.textContent = `${newCalories.toFixed(2)} kcal`;
+
+                        // Gesamt-Kalorien hochzählen
+                        totalCalories += newCalories;
+                    });
+
+                    // Gesamt-Kalorien in das Feld schreiben
+                    totalCaloriesField.value = totalCalories.toFixed(2);
+
+                    // Die Portionszahl im versteckten Feld aktualisieren, um es an das Formular zu übergeben
+                    hiddenPortionsInput.value = portionCount;
+                }
+
+                // Event-Listener für Änderungen an der Portionszahl
+                portionInput.addEventListener("input", updateIngredientAmounts);
+
+                // Initiale Berechnung beim Laden der Seite
+                updateIngredientAmounts();
+            });
+        </script>
+
+
+
+
+    </body>
+</f:section>
+
+</html>

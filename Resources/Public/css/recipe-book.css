@@ -1,0 +1,178 @@
+body {
+    background-color: #fcf5e7;
+    margin: 0px;
+}
+
+.header , .page-content{
+    margin: 10px;
+}
+
+.page-content {
+    padding:0px 30px 0px 30px;
+}
+
+.nav-bar {
+    background-color: #556b2f;
+    height: 100px;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #fcf5e7;
+}
+
+.title {
+    padding-left: 70px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-family: "Lavishly Yours", serif;
+    font-size:100px;
+    color: #c75d1a;
+    cursor: default;
+}
+
+.new-recipe, .recipe-item, .add-ingredient {
+    width: 450px;
+    margin-left: 60px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 30px;
+    color: #556b2f;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.recipe-icon, .add-new-recipe {
+    background-color: #556b2f;
+    width: 100px;
+    height: 100px;
+    margin: 10px 20px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-ingredient-icon {
+    background-color: #556b2f;
+    width: 70px;
+    height: 70px;
+    margin: 10px 20px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.material-symbols-outlined {
+    font-size: 48px !important;
+    color: #fcf5e7;
+}
+
+.new-recipe:hover, .recipe-item:hover, .add-ingredient:hover {
+    margin-left: 80px;
+}
+
+.portion-input, .title-input {
+    margin-left: 70px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: #556b2f;
+}
+
+.button {
+    background-color: #556b2f;
+    border-style: solid;
+    border-color: #556b2f;
+    margin: 5px;
+    width: 250px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color: #fcf5e7;
+    color: #556b2f;
+}
+
+.recipe-details-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.detail-box {
+    background-color: #556b2f;
+    width: 40%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    color: #fcf5e7;
+    font-size: 30px;
+}
+
+.buttons-container {
+    position: fixed;
+    bottom: 10px;
+    right: 70px;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+}
+
+input {
+    background-color: #556b2f;
+    border: 3px solid #556b2f;
+    font-size: 25px;
+    color: #fcf5e7;
+}
+
+input:focus {
+    background-color: #fcf5e7;
+    outline: none;
+    border: 3px solid #556b2f;
+    color: #556b2f;
+}
+
+#portions {
+    width: 40px;
+    height: 35px;
+}
+
+#recipe-title {
+    width: 100px;
+    height: 35px;
+}
+
+.amount-input {
+    width: 60px;
+    height: 35px;
+}
+
+.ingredient-list-item {
+    margin-left: 70px;
+    padding: 10px 0px 10px 0px;
+    font-size: 30px;
+    color: #556b2f;
+}
+
+.subtitle {
+    padding-left: 70px;
+    padding-bottom: 5px;
+    font-size: 35px;
+    color: #556b2f;
+
+}

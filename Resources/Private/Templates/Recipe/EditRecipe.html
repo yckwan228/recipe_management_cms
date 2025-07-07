@@ -1,0 +1,90 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="RecipeLayout" />
+
+<f:section name="content">
+
+    <body>
+        <f:render partial="Header" arguments="{title:'Rezept bearbeiten', benutzer:benutzer}" />
+        <div class="page-content">
+
+            <f:comment>Debugging Recipe Object:</f:comment>
+            <f:debug>{recipe}</f:debug>
+
+            <f:form class="edit-recipe-form" action="updateRecipe" method="post" name="editRecipe" object="{recipe}">
+
+                <f:form.hidden name="recipeUid" value="{recipe.uid}" />
+
+                <!-- Rezept-ID übergeben -->
+                <f:form.hidden property="uid" />
+
+                <!-- Benutzer-ID übergeben -->
+                <f:form.hidden name="benutzerId" value="{benutzer.uid}" />
+
+                <div class="title-input">
+                    <label for="title">Titel:</label>
+                    <f:form.textfield property="recipeName" id="recipe-titel" name="recipeName"
+                        value="{recipeData.title}" required="required" />
+                </div>
+
+                <div class="portion-input" data-original-portions="{recipe.portions}">
+                    <label for="portions">Portionen:</label>
+                    <f:form.textfield type="number" id="portions" property="portions"
+                        additionalAttributes="{min: '1', max: '20'}" />
+                </div>
+
+                <h3>Zutaten:</h3>
+                <f:link.action action="listIngredientEditRecipe" arguments="{recipeUid: recipe.uid}" class="button">
+                    Zutat hinzufügen
+                </f:link.action>
+                <p>DEBUG: Rezept UID = {recipe.uid}</p>
+
+                <ul class="ingredient-list">
+                    <f:if condition="{recipe.ingredientsInRecipe}">
+                        <f:then>
+                            <f:for each="{recipe.ingredientsInRecipe}" as="ingredient">
+                                <li class="ingredient-list-item" 
+                                    data-base-quantity="{ingredient.quantityInGram}" 
+                                    data-calories-per-100g="{ingredient.ingredient.caloriesPer100g}">
+                
+                                    {ingredient.ingredient.ingredientName} - 
+                                    <span class="ingredient-quantity">{ingredient.quantityInGram} g</span> - 
+                                    <span class="ingredient-calories">
+                                        <f:if condition="{ingredient.ingredient.caloriesPer100g}">
+                                            <f:then>
+                                                {ingredient.ingredient.caloriesPer100g * ingredient.quantityInGram / 100} kcal
+                                            </f:then>
+                                            <f:else>
+                                                0 kcal
+                                            </f:else>
+                                        </f:if>
+                                    </span>
+                
+                                    <f:link.action action="removeIngredientEditRecipe" 
+                                        arguments="{recipeUid: recipe.uid, ingredientId: ingredient.ingredient.uid}" 
+                                        class="button">
+                                        Entfernen
+                                    </f:link.action>
+                                </li>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <li>🔹 Noch keine Zutaten hinzugefügt.</li>
+                        </f:else>
+                    </f:if>
+                </ul>
+
+                <div class="title-input">
+                    <label for="totalCalories">Kalorien:</label>
+                    <f:form.textfield name="totalCalories" id="totalCalories" value="{recipe.totalCalories}"
+                        disabled="disabled" />
+                    <p>DEBUG: Kalorien = {recipe.totalCalories}</p>
+                </div>
+
+                <f:form.submit value="Rezept aktualisieren" />
+            </f:form>
+        </div>
+
+    </body>
+</f:section>
+
+</html>
